@@ -2,7 +2,7 @@ import { Button } from '../ui/button'
 
 const MidJourney = () => {
 	return (
-		<div className='w-full h-full px-10 sm:px-20 md:px-20 lg:px-20 xl:32px 2xl:40px 3xl:60px 4xl:px-80 grid grid-rows-[1fr_0.7fr] xl:grid-cols-2  mb-32'>
+		<div className='w-full h-full px-10 sm:px-20 md:px-20 lg:px-20 xl:32px 2xl:40px 3xl:60px 4xl:px-80 grid grid-rows-[1fr_0.7fr] xl:grid-rows-1 xl:grid-cols-2  mb-32'>
 			<div className='flex relative h-full mt-10 xl:mt-0 w-[400px] lg:w-[630px] xl:ml-auto mx-auto '>
 				<img
 					className='w-64 lg:w-80 xl:w-96  xl:mx-0 h-56 xl:h-80 absolute top-0 z-10 right-0'
