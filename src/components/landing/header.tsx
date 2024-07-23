@@ -30,7 +30,7 @@ const Header = ({ setIsOpen, isOpen }: IHeaderProps) => {
 				</div>
 				<div className='flex items-center justify-end w-56 gap-4 bg-red text-white'>
 					<LangToggle />
-					<Button className='text-white hidden md::hidden'>Authorization</Button>
+					<Button className='text-white hidden md:block'>Authorization</Button>
 					{isOpen ? (
 						<Button
 							className='lg:hidden text-white p-2'
