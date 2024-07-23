@@ -82,6 +82,26 @@ module.exports = {
 				md: '1rem'
 			},
 			keyframes: {
+				'slideInLeft': {
+          '0%': {
+            transform: 'translateX(20px)',
+            opacity: '0.5',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+            opacity: '1',
+          },
+        },
+				'slideInRight': {
+          '0%': {
+            transform: 'translateX(-20px)',
+            opacity: '0.5',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+            opacity: '1',
+          },
+        },
 				'accordion-down': {
 					from: { height: '0' },
 					to: { height: 'var(--radix-accordion-content-height)' }
@@ -93,9 +113,28 @@ module.exports = {
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'slideInLeft': 'slideInLeft 0.5s ease-out',
+				'slideInRight': 'slideInRight 0.5s ease-out',
+
 			}
-		}
+		},
+		screens: {
+			sm: '576px',
+			'sm-max': { max: '576px' },
+			md: '768px',
+			'md-max': { max: '768px' },
+			lg: '992px',
+			'lg-max': { max: '992px' },
+			xl: '1200px',
+			'xl-max': { max: '1200px' },
+			'2xl': '1320px',
+			'2xl-max': { max: '1320px' },
+			'3xl': '1600px',
+			'3xl-max': { max: '1600px' },
+			'4xl': '1850px',
+			'4xl-max': { max: '1850px' }
+		},
 	},
 	plugins: [
 		function ({ addUtilities }: { addUtilities: any }) {

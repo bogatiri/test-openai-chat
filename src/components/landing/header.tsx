@@ -12,7 +12,7 @@ import { Separator } from '../ui/separator'
 // import { ModeToggle } from '../mode-toggle'
 const Header = () => {
 	return (
-		<header className='fixed flex w-screen h-20 z-10 px-80 py-5 bg-border-header border-b-header'>
+		<header className='fixed flex w-screen h-20 z-10 px-10 sm:px-20 md:px-20 lg:px-20 xl:32px 2xl:40px 3xl:60px 4xl:px-80 py-5 bg-border-header border-b-header'>
 			<div className='w-full flex justify-between h-10'>
 				<div className='flex w-[65rem] justify-start text-lg items-center gap-4'>
 					<a
