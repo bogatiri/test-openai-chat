@@ -1,6 +1,7 @@
 import { Send } from 'lucide-react'
 import { Configuration, OpenAIApi } from 'openai-edge'
 import { useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import ChatBody from './chat-body'
@@ -54,7 +55,7 @@ const Chat = () => {
 			if (messagesEndRef.current) {
 				messagesEndRef.current.scrollIntoView({
 					behavior: 'smooth',
-					block: 'end',
+					block: 'center',
 					inline: 'nearest'
 				})
 			}
@@ -62,15 +63,19 @@ const Chat = () => {
 	}
 
 	const handleSendMessage = () => {
-		const newMessage: IResponseProps = {
-			content: message,
-			role: 'user'
-		}
+		if (message.trim().length > 0) {
+			const newMessage: IResponseProps = {
+				content: message,
+				role: 'user'
+			}
 
-		setResponse(prevResponse => [...prevResponse, newMessage])
-		getCompletion()
-		scrollToBottom()
-		setMessage('')
+			setResponse(prevResponse => [...prevResponse, newMessage])
+			getCompletion()
+			scrollToBottom()
+			setMessage('')
+		} else {
+			toast.warning('Длина сообщения должна быть больше 1 символа')
+		}
 	}
 
 	return (

@@ -5,6 +5,7 @@ import Footer from './components/landing/footer'
 import Header from './components/landing/header'
 import Main from './components/landing/main'
 import Menu from './components/landing/menu'
+import { Toaster } from 'sonner'
 const App = () => {
 	const [isOpen, setIsOpen] = useState(false)
 
@@ -39,6 +40,7 @@ const App = () => {
 				<Main />
 				<Footer />
 			</div>
+			<Toaster />
 		</ThemeProvider>
 	)
 }
