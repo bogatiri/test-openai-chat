@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChevronDown } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Button } from '../ui/button'
 
 interface IMenuProps {
@@ -8,23 +8,20 @@ interface IMenuProps {
 }
 
 const Menu = ({ className }: IMenuProps) => {
-	const [isOpen, setIsOpen] = useState(false)
-	const menuRef = useRef<HTMLDivElement>(null)
-	const [isClickOnToggle, setIsClickOnToggle] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+	const buttonRef = useRef<HTMLButtonElement>(null);
 
-	const toggleMenu = () => {
-		setIsClickOnToggle(true)
-		setIsOpen(prev => !prev)
-	}
+  const toggleMenu = () => {
+    setIsOpen(prev => !prev); 
+  };
 
-	const handleClickOutside = (event: MouseEvent) => {
-		if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-			if (isOpen && !isClickOnToggle) {
-				setIsOpen(false)
-			}
-		}
-		setIsClickOnToggle(false)
-	}
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  }, []);
 
 	useEffect(() => {
 		document.addEventListener('mousedown', handleClickOutside)
@@ -33,11 +30,19 @@ const Menu = ({ className }: IMenuProps) => {
 		}
 	}, [isOpen])
 
+	const handleButtonClick = () => {
+    if (!isOpen) {
+      toggleMenu();
+    } else{
+			setIsOpen(false)
+		}
+  };
+
 	return (
 		<nav className={`lg:flex flex w-full gap-4 ${className}`}>
 			<div className='hover:text-blue-700 flex items-center gap-1 justify-between cursor-pointer'>
 				<span>Продукты</span>
-				<button onClick={toggleMenu}>
+				<button ref={buttonRef} onClick={handleButtonClick}>
 					<ChevronDown
 						className={`mt-1 transition-transform duration-300 ease-out ${isOpen ? 'transform rotate-180' : ''}`}
 					/>
@@ -86,7 +91,6 @@ const Menu = ({ className }: IMenuProps) => {
 					</div>
 				</div>
 			)}
-
 			<a
 				className='hover:text-blue-700 cursor-pointer'
 				href='#'
